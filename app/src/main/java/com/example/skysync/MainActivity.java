@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
        @Override
        protected String doInBackground(String... urls) {
 
-           HttpURLConnection connection = null;
+           HttpsURLConnection connection = null;
            BufferedReader reader = null;
 
            try {
 
                URL url = new URL(urls[0]);
-               connection = (HttpURLConnection) url.openConnection();
+               connection = (HttpsURLConnection) url.openConnection();
                connection.connect();
 
                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));

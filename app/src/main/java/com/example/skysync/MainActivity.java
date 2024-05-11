@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText city;
@@ -26,9 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
    private class GetWeatherInfo extends AsyncTask<String, Void, String > {
 
+        HttpsURLConnection connection = null;
 
        @Override
-       protected String doInBackground(String... strings) {
+       protected String doInBackground(String... urls) {
+
+           URL url = new URL(urls[0]);
+
            return null;
        }
    }

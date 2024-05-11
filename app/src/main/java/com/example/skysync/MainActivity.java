@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -73,6 +76,27 @@ public class MainActivity extends AppCompatActivity {
            }
 
            return null;
+       }
+
+       @Override
+       protected void onPostExecute(String result) {
+           super.onPostExecute(result);
+           if(result != null) {
+               try {
+                   JSONObject jsonObject = new JSONObject(result);
+                   JSONObject main = jsonObject.getJSONObject("main");
+
+                   double temp = main.getDouble("temp") - 273.00;
+                   String tempValue = Double.toString(temp);
+                   //String tempValue = "" + temp;
+
+                   temperature = findViewById(R.id.temperature);
+                   temperature.setText(tempValue);
+
+               }catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }
        }
    }
 }
